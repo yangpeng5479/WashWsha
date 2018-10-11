@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>countryCode</key>
+	<array>
+		<dict>
+			<key>country</key>
+			<string>Algeria</string>
+			<key>code</key>
+			<string>213</string>
+		</dict>
+		<dict>
+			<key>country</key>
+			<string>Bahrain</string>
+			<key>code</key>
+			<string>973</string>
+		</dict>
+		<dict>
+			<key>country</key>
+			<string>China</string>
+			<key>code</key>
+			<string>86</string>
+		</dict>
+		<dict>
+			<key>country</key>
+			<string>Egypt</string>
+			<key>code</key>
+			<string>20</string>
+		</dict>
+		<dict>
+			<key>country</key>
+			<string>Iraq</string>
+			<key>code</key>
+			<string>964</string>
+		</dict>
+		<dict>
+			<key>country</key>
+			<string>Kuwait</string>
+			<key>code</key>
+			<string>965</string>
+		</dict>
+		<dict>
+			<key>country</key>
+			<string>Morocco</string>
+			<key>code</key>
+			<string>212</string>
+		</dict>
+		<dict>
+			<key>country</key>
+			<string>Oman</string>
+			<key>code</key>
+			<string>968</string>
+		</dict>
+		<dict>
+			<key>country</key>
+			<string>Qatar</string>
+			<key>code</key>
+			<string>974</string>
+		</dict>
+		<dict>
+			<key>country</key>
+			<string>Saudi Arabia</string>
+			<key>code</key>
+			<string>966</string>
+		</dict>
+		<dict>
+			<key>country</key>
+			<string>United Arab Emirates</string>
+			<key>code</key>
+			<string>971</string>
+		</dict>
+		<dict>
+			<key>country</key>
+			<string>United States of America</string>
+			<key>code</key>
+			<string>1</string>
+		</dict>
+		<dict>
+			<key>country</key>
+			<string>Yemen</string>
+			<key>code</key>
+			<string>967</string>
+		</dict>
+	</array>
+</dict>
+</plist>

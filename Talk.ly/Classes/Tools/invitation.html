@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>award</title>
+    <link type="text/css" rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="iconfont.css">
+</head>
+
+<body>
+    <div class="content-box">
+
+
+
+        <div id="invitationbox">
+
+            <div class="code">
+                <p>Enter the INvitation code</p>
+                <input type="text" id="inval" value="" placeholder="Invitation Code">
+                <button onclick="getCode()">OK</button>
+            </div>
+
+            <div class="online">
+                <h2>login reward</h2>
+                <div class="newuser">
+                    <div class="reward">
+                        <p>
+                            <img src="dollar.png" alt="">
+                            <span>+1</span>
+                        </p>
+                        <span>Login for 1 USD</span>
+                    </div>
+
+                    <p>Online reward</p>
+                    <div class="message">
+                        <dl>
+                            <dt>1stDay</dt>
+                            <dd>
+                                <img src="silver.png" alt="">
+                                <span>+20</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>2st day</dt>
+                            <dd>
+                                <img src="silver.png" alt="">
+                                <span>+20</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>3st day</dt>
+                            <dd>
+                                <img src="silver.png" alt="">
+                                <span>+20</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>4st day</dt>
+                            <dd>
+                                <img src="silver.png" alt="">
+                                <span>+20</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>5st day</dt>
+                            <dd>
+                                <img src="silver.png" alt="">
+                                <span>+20</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>6st day</dt>
+                            <dd>
+                                <img src="silver.png" alt="">
+                                <span>+20</span>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>7st day</dt>
+                            <dd>
+                                <img src="silver.png" alt="">
+                                <span>+20</span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="reminder">
+
+            <div class="reminder-box">
+                <span onclick="close_rem()" class="iconfont icon-guanbi1"></span>
+                <h3 id="remd">今天天气很好！</h3>
+            </div>
+
+        </div>
+        <div id="reward">
+            <h3>New User Reward</h3>
+            <p>Reward amount 1 USD</p>
+            <img src="dollar.png" alt="">
+            <ul>
+                <li>The bonus amount will be depos ited into account as a USD.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="screen.js"></script>
+<script type="text/javascript" src="jquery-1.7.1.js"></script>
+<script type="text/javascript">
+    var u = navigator.userAgent;
+    var isAndroid = u.indexOf("Android") > -1 || u.indexOf("Adr") > -1; //android终端
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    var verification = "";
+
+    if (isiOS) {
+        getInfo(userid);
+    } else {
+        getToken();
+    }
+    //ios获取数据
+    function getInfo(userid) {
+        if (userid != null) {
+            verification = userid;
+            playSound(userid)
+        }
+    }
+    //给ios传送参数
+    function playSound(userid) {
+        window.webkit.messageHandlers.PlaySound.postMessage(userid);
+    }
+    //安卓获取数据
+    function getToken() {
+        verification = android.getToken();
+        if (verification != null) {
+            android.showToast('获取到数据');
+        }
+    }
+
+    function close_rem() {
+        document.getElementById("reminder").style.display = "none";
+        document.getElementById('inval').value = "";
+    }
+
+    function getCode() {
+        var codeval = document.getElementById('inval').value;
+        if (codeval.length == 0) {
+            document.getElementById("reminder").style.display = "block";
+            document.getElementById("remd").innerHTML = "Please enter a valid verification code.";
+            return
+        }
+        $.ajax({
+            type: "POST",
+            url: "http://api.italkly.com/rest3/v1/user/bindInviteCode",
+            data: {
+                invite_code: codeval,
+                token: verification
+            },
+            dataType: "json",
+            success: function(res) {
+                console.log(res)
+                if (res.status == 1) {
+                    document.getElementById("reward").style.display = "block";
+                    document.getElementById("invitationbox").style.display = "none";
+                } else if (res.status == 60001) {
+                    document.getElementById("reminder").style.display = "block";
+                    document.getElementById("remd").innerHTML = "Your account has been invited.";
+                } else {
+                    document.getElementById("reminder").style.display = "block";
+                    document.getElementById("remd").innerHTML = "Invalid invitation code";
+                }
+            }
+        });
+    }
+</script>
+
+</html>
